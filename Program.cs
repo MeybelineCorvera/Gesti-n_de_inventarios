@@ -11,11 +11,43 @@ class Program
         // Título principal
         Console.WriteLine("=== GESTIÓN DE INVENTARIOS ===");
 
-        // Llamamos al método para agregar productos
-        AgregarProducto();
+        // Menú de opciones para el usuario
+        int opcion;
+        do
+        {
+            Console.WriteLine("\nSeleccione una opción:");
+            Console.WriteLine("1. Agregar producto");
+            Console.WriteLine("2. Eliminar producto");
+            Console.WriteLine("3. Mostrar inventario");
+            Console.WriteLine("4. Salir");
+            Console.Write("Opción: ");
+            opcion = int.Parse(Console.ReadLine());
 
-        // Mostramos los productos agregados
-        MostrarInventario();
+            if (opcion == 1)
+            {
+                // Llamamos al método para agregar productos
+                AgregarProducto();
+            }
+            else if (opcion == 2)
+            {
+                // Llamamos al método para eliminar productos
+                EliminarProducto();
+            }
+            else if (opcion == 3)
+            {
+                // Mostramos los productos agregados
+                MostrarInventario();
+            }
+            else if (opcion == 4)
+            {
+                Console.WriteLine("Saliendo del sistema...");
+            }
+            else
+            {
+                Console.WriteLine("Opción inválida. Intente nuevamente.");
+            }
+
+        } while (opcion != 4);
     }
 
     // Método para agregar un nuevo producto
@@ -58,6 +90,27 @@ class Program
         foreach (var producto in inventario)
         {
             producto.Mostrar(); // Llama al método Mostrar() de la clase Producto
+        }
+    }
+
+    // Método para eliminar un producto por su ID
+    static void EliminarProducto()
+    {
+        Console.WriteLine("\n--- ELIMINAR PRODUCTO ---");
+
+        Console.Write("Ingrese el ID del producto a eliminar: ");
+        string idEliminar = Console.ReadLine();
+
+        Producto productoAEliminar = inventario.Find(p => p.ID == idEliminar);
+
+        if (productoAEliminar != null)
+        {
+            inventario.Remove(productoAEliminar);
+            Console.WriteLine("✅ Producto eliminado correctamente.");
+        }
+        else
+        {
+            Console.WriteLine("❌ No se encontró ningún producto con ese ID.");
         }
     }
 }
