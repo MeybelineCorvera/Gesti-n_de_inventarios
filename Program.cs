@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 class Program
 {
-    static List<Producto> inventario = new List<Producto>();
+    static List<Producto> inventario = new();
 
     static void Main()
     {
@@ -23,7 +23,7 @@ class Program
             switch (opcion)
             {
                 case 1: AgregarProducto(); break;
-                //case 2: MostrarProductos(); break;
+                case 2: AgregarProducto(); break;
                 case 3: ActualizarProducto(); break;
                 case 4: EliminarProducto(); break;
                 case 5: Console.WriteLine("Saliendo..."); break;
@@ -42,13 +42,28 @@ class Program
         Console.Write("Stock mínimo: "); int stockMin = int.Parse(Console.ReadLine());
         Console.Write("Precio: "); decimal precio = decimal.Parse(Console.ReadLine());
 
-        Producto nuevo = new Producto(id, nombre, descripcion, stock, stockMin, precio);
+        Producto nuevo = new(id, nombre, descripcion, stock, stockMin, precio);
         inventario.Add(nuevo);
         Console.WriteLine("✅ Producto agregado correctamente.");
     }
 
     //Metodo para mostrar productos
     //MAURICIO
+    static void MostrarInventario()
+    {
+        Console.WriteLine("\n=== LISTA DE PRODUCTOS ===");
+
+        if (inventario.Count == 0)
+        {
+            Console.WriteLine("⚠️ No hay productos en el inventario.");
+            return;
+        }
+
+        foreach (var producto in inventario)
+        {
+            Console.WriteLine(producto);
+        }
+    }
 
     //Metodo para actualizar productos
     static void ActualizarProducto()

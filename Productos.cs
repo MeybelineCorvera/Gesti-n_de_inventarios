@@ -4,7 +4,7 @@ public class Producto
     // Propiedades del producto
     public int ID { get; set; }              // Identificador único del producto
     public string Nombre { get; set; }          // Nombre del producto
-    public string Descripcion { get; set; }   
+    public string Descripcion { get; set; }
     public int StockActual { get; set; }        // Cantidad actual en stock
     public int StockMinimo { get; set; }        // Cantidad mínima antes de generar una alerta
     public decimal Precio { get; set; }         // Precio del producto
@@ -30,4 +30,7 @@ public class Producto
     {
         Console.WriteLine($"ID: {ID}, Nombre: {Nombre}, Descripción: {Descripcion}, Stock: {StockActual}, Stock Mínimo: {StockMinimo}, Precio: {Precio:C}");
     }
+
+
+
 }
