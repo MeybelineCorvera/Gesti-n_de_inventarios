@@ -28,3 +28,18 @@ C:\Users\MINEDUCYT\Desktop\Proyecto_POO\Gesti-n_de_inventarios\obj\Debug\net9.0\
 C:\Users\MINEDUCYT\Desktop\Proyecto_POO\Gesti-n_de_inventarios\obj\Debug\net9.0\Gesti-n_de_inventarios.pdb
 C:\Users\MINEDUCYT\Desktop\Proyecto_POO\Gesti-n_de_inventarios\obj\Debug\net9.0\Gesti-n_de_inventarios.genruntimeconfig.cache
 C:\Users\MINEDUCYT\Desktop\Proyecto_POO\Gesti-n_de_inventarios\obj\Debug\net9.0\ref\Gesti-n_de_inventarios.dll
+C:\Users\DELL\Desktop\proyecto final\Gesti-n_de_inventarios\bin\Debug\net9.0\Gesti-n_de_inventarios.exe
+C:\Users\DELL\Desktop\proyecto final\Gesti-n_de_inventarios\bin\Debug\net9.0\Gesti-n_de_inventarios.deps.json
+C:\Users\DELL\Desktop\proyecto final\Gesti-n_de_inventarios\bin\Debug\net9.0\Gesti-n_de_inventarios.runtimeconfig.json
+C:\Users\DELL\Desktop\proyecto final\Gesti-n_de_inventarios\bin\Debug\net9.0\Gesti-n_de_inventarios.dll
+C:\Users\DELL\Desktop\proyecto final\Gesti-n_de_inventarios\bin\Debug\net9.0\Gesti-n_de_inventarios.pdb
+C:\Users\DELL\Desktop\proyecto final\Gesti-n_de_inventarios\obj\Debug\net9.0\Gesti-n_de_inventarios.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\DELL\Desktop\proyecto final\Gesti-n_de_inventarios\obj\Debug\net9.0\Gesti-n_de_inventarios.AssemblyInfoInputs.cache
+C:\Users\DELL\Desktop\proyecto final\Gesti-n_de_inventarios\obj\Debug\net9.0\Gesti-n_de_inventarios.AssemblyInfo.cs
+C:\Users\DELL\Desktop\proyecto final\Gesti-n_de_inventarios\obj\Debug\net9.0\Gesti-n_de_inventarios.csproj.CoreCompileInputs.cache
+C:\Users\DELL\Desktop\proyecto final\Gesti-n_de_inventarios\obj\Debug\net9.0\Gesti-n_de_inventarios.sourcelink.json
+C:\Users\DELL\Desktop\proyecto final\Gesti-n_de_inventarios\obj\Debug\net9.0\Gesti-n_de_inventarios.dll
+C:\Users\DELL\Desktop\proyecto final\Gesti-n_de_inventarios\obj\Debug\net9.0\refint\Gesti-n_de_inventarios.dll
+C:\Users\DELL\Desktop\proyecto final\Gesti-n_de_inventarios\obj\Debug\net9.0\Gesti-n_de_inventarios.pdb
+C:\Users\DELL\Desktop\proyecto final\Gesti-n_de_inventarios\obj\Debug\net9.0\Gesti-n_de_inventarios.genruntimeconfig.cache
+C:\Users\DELL\Desktop\proyecto final\Gesti-n_de_inventarios\obj\Debug\net9.0\ref\Gesti-n_de_inventarios.dll

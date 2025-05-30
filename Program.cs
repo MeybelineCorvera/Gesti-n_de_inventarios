@@ -12,10 +12,11 @@ class Program
         {
             Console.WriteLine("\n=== MENÚ DE INVENTARIO ===");
             Console.WriteLine("1. Agregar producto");
-            Console.WriteLine("2. Mostrar todos los productos");
+            Console.WriteLine("2. Mostrar productos en inventarios");
             Console.WriteLine("3. Actualizar producto");
             Console.WriteLine("4. Eliminar producto");
-            Console.WriteLine("5. Salir");
+            Console.WriteLine("5. Mostrar stock mínimo de un producto");
+            Console.WriteLine("6. Salir");
             Console.Write("Seleccione una opción: ");
 
             opcion = int.Parse(Console.ReadLine());
@@ -23,14 +24,15 @@ class Program
             switch (opcion)
             {
                 case 1: AgregarProducto(); break;
-                case 2: AgregarProducto(); break;
+                case 2: MostrarInventario(); break;
                 case 3: ActualizarProducto(); break;
                 case 4: EliminarProducto(); break;
-                case 5: Console.WriteLine("Saliendo..."); break;
+                case 5: MostrarStockMinimo(); break;
+                case 6: Console.WriteLine("Saliendo..."); break;
                 default: Console.WriteLine("Opción inválida."); break;
             }
 
-        } while (opcion != 7);
+        } while (opcion != 6);
     }
     //Metodo para agregar productos
     static void AgregarProducto()
@@ -47,23 +49,39 @@ class Program
         Console.WriteLine("✅ Producto agregado correctamente.");
     }
 
-    //Metodo para mostrar productos
+    //Mostrar productos en inventario 
     //MAURICIO
+    
     static void MostrarInventario()
+{
+    Console.WriteLine("\n=== LISTA DE PRODUCTOS EN INVENTARIO ===");
+
+    if (inventario.Count == 0)
     {
-        Console.WriteLine("\n=== LISTA DE PRODUCTOS ===");
-
-        if (inventario.Count == 0)
-        {
-            Console.WriteLine("⚠️ No hay productos en el inventario.");
-            return;
-        }
-
-        foreach (var producto in inventario)
-        {
-            Console.WriteLine(producto);
-        }
+        Console.WriteLine("⚠️ No hay productos en el inventario.");
+        return;
     }
+
+    foreach (var producto in inventario)
+    {
+        Console.WriteLine($"ID: {producto.ID}");
+        Console.WriteLine($"Nombre: {producto.Nombre}");
+        Console.WriteLine($"Descripción: {producto.Descripcion}");
+        Console.WriteLine($"Stock actual: {producto.StockActual}");
+        Console.WriteLine($"Stock mínimo: {producto.StockMinimo}");
+        Console.WriteLine($"Precio: ${producto.Precio}");
+
+        if (producto.StockActual < producto.StockMinimo)
+        {
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("⚠️ ¡Alerta! El stock está por debajo del mínimo.");
+            Console.ResetColor();
+        }
+
+        Console.WriteLine(new string('-', 40));
+    }
+}
+
 
     //Metodo para actualizar productos
     static void ActualizarProducto()
@@ -85,7 +103,7 @@ class Program
             Console.WriteLine("❌ Producto no encontrado.");
         }
     }
-    
+
     //Metodo para elimminar productos
     static void EliminarProducto()
     {
@@ -101,5 +119,27 @@ class Program
         {
             Console.WriteLine("❌ Producto no encontrado.");
         }
-    }    
+    }
+
+    // Mostrar stop minimo de un producto 
+    static void MostrarStockMinimo()
+{
+    Console.Write("Ingrese el ID del producto: ");
+    if (!int.TryParse(Console.ReadLine(), out int id))
+    {
+        Console.WriteLine("❌ ID inválido.");
+        return;
+    }
+
+    Producto producto = inventario.Find(p => p.ID == id);
+    if (producto != null)
+    {
+        Console.WriteLine($"🟡 El stock mínimo del producto '{producto.Nombre}' (ID: {producto.ID}) es: {producto.StockMinimo}");
+    }
+    else
+    {
+        Console.WriteLine("❌ Producto no encontrado.");
+    }
+}
+   
 }
