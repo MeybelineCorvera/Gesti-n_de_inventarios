@@ -3,8 +3,10 @@ using System.Collections.Generic;
 
 class Program
 {
+    // Lista para almacenar los productos del inventario
     static List<Producto> inventario = new();
 
+    // Método principal del programa
     static void Main()
     {
         int opcion;
@@ -16,7 +18,9 @@ class Program
             Console.WriteLine("3. Actualizar producto");
             Console.WriteLine("4. Eliminar producto");
             Console.WriteLine("5. Mostrar stock mínimo de un producto");
-            Console.WriteLine("6. Salir");
+            Console.WriteLine("6. Registrar salida de productos"); // NUEVA OPCIÓN
+            Console.WriteLine("7. Salir"); // Mover "Salir" a la opción 7
+
             Console.Write("Seleccione una opción: ");
 
             opcion = int.Parse(Console.ReadLine());
@@ -28,11 +32,12 @@ class Program
                 case 3: ActualizarProducto(); break;
                 case 4: EliminarProducto(); break;
                 case 5: MostrarStockMinimo(); break;
-                case 6: Console.WriteLine("Saliendo..."); break;
+                case 6: RegistrarSalida(); break;
+                case 7: Console.WriteLine("Saliendo..."); break;
                 default: Console.WriteLine("Opción inválida."); break;
             }
 
-        } while (opcion != 6);
+        } while (opcion != 7);
     }
     //Metodo para agregar productos
     static void AgregarProducto()
@@ -123,23 +128,51 @@ class Program
 
     // Mostrar stop minimo de un producto 
     static void MostrarStockMinimo()
-{
-    Console.Write("Ingrese el ID del producto: ");
-    if (!int.TryParse(Console.ReadLine(), out int id))
     {
-        Console.WriteLine("❌ ID inválido.");
-        return;
+        Console.Write("Ingrese el ID del producto: ");
+        if (!int.TryParse(Console.ReadLine(), out int id))
+        {
+            Console.WriteLine("❌ ID inválido.");
+            return;
+        }
+
+        Producto producto = inventario.Find(p => p.ID == id);
+        if (producto != null)
+        {
+            Console.WriteLine($"🟡 El stock mínimo del producto '{producto.Nombre}' (ID: {producto.ID}) es: {producto.StockMinimo}");
+        }
+        else
+        {
+            Console.WriteLine("❌ Producto no encontrado.");
+        }
     }
 
-    Producto producto = inventario.Find(p => p.ID == id);
-    if (producto != null)
+    // NUEVO MÉTODO AGREGADO PARA REGISTRAR SALIDA DE PRODUCTOS  gustavo 
+    static void RegistrarSalida()
     {
-        Console.WriteLine($"🟡 El stock mínimo del producto '{producto.Nombre}' (ID: {producto.ID}) es: {producto.StockMinimo}");
+        Console.Write("ID del producto a retirar: ");
+        int id = int.Parse(Console.ReadLine());
+
+        Producto producto = inventario.Find(p => p.ID == id);
+
+        if (producto != null)
+        {
+            Console.Write("Cantidad a retirar: ");
+            int cantidad = int.Parse(Console.ReadLine());
+
+            if (cantidad > 0 && cantidad <= producto.StockActual)
+            {
+                producto.StockActual -= cantidad;
+                Console.WriteLine($"✅ Se han retirado {cantidad} unidades del producto '{producto.Nombre}'.");
+            }
+            else
+            {
+                Console.WriteLine("❌ No hay suficiente stock disponible o la cantidad ingresada es inválida.");
+            }
+        }
+        else
+        {
+            Console.WriteLine("❌ Producto no encontrado.");
+        }
     }
-    else
-    {
-        Console.WriteLine("❌ Producto no encontrado.");
-    }
-}
-   
 }
