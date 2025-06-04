@@ -31,7 +31,7 @@ class Program
                 case 2: MostrarInventario(); break;
                 case 3: ActualizarProducto(); break;
                 case 4: EliminarProducto(); break;
-                case 5: MostrarStockMinimo(); break;
+                case 5: VerAlertas(); break;
                 case 6: RegistrarSalida(); break;
                 case 7: Console.WriteLine("Saliendo..."); break;
                 default: Console.WriteLine("Opción inválida."); break;
@@ -127,48 +127,32 @@ class Program
     }
 
     // Mostrar stop minimo de un producto 
-    static void MostrarStockMinimo()
+    static void VerAlertas()
     {
-        Console.Write("Ingrese el ID del producto: ");
-        if (!int.TryParse(Console.ReadLine(), out int id))
+        Console.WriteLine("\n--- ALERTAS DE STOCK ---");
+        foreach (var producto in inventario)
         {
-            Console.WriteLine("❌ ID inválido.");
-            return;
-        }
-
-        Producto producto = inventario.Find(p => p.ID == id);
-        if (producto != null)
-        {
-            Console.WriteLine($"🟡 El stock mínimo del producto '{producto.Nombre}' (ID: {producto.ID}) es: {producto.StockMinimo}");
-        }
-        else
-        {
-            Console.WriteLine("❌ Producto no encontrado.");
+            if (producto.VerificarStockMinimo())
+            {
+                AlertaStock alerta = new AlertaStock(producto);
+                alerta.GenerarAlerta();
+            }
         }
     }
 
     // NUEVO MÉTODO AGREGADO PARA REGISTRAR SALIDA DE PRODUCTOS  gustavo 
     static void RegistrarSalida()
     {
-        Console.Write("ID del producto a retirar: ");
+        Console.Write("ID del producto: ");
         int id = int.Parse(Console.ReadLine());
-
         Producto producto = inventario.Find(p => p.ID == id);
 
         if (producto != null)
         {
             Console.Write("Cantidad a retirar: ");
             int cantidad = int.Parse(Console.ReadLine());
-
-            if (cantidad > 0 && cantidad <= producto.StockActual)
-            {
-                producto.StockActual -= cantidad;
-                Console.WriteLine($"✅ Se han retirado {cantidad} unidades del producto '{producto.Nombre}'.");
-            }
-            else
-            {
-                Console.WriteLine("❌ No hay suficiente stock disponible o la cantidad ingresada es inválida.");
-            }
+            SalidaInventario salida = new SalidaInventario(id, producto, cantidad, DateTime.Now);
+            salida.RegistrarSalida();
         }
         else
         {
