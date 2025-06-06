@@ -17,9 +17,10 @@ class Program
             Console.WriteLine("2. Mostrar productos en inventarios");
             Console.WriteLine("3. Actualizar producto");
             Console.WriteLine("4. Eliminar producto");
-            Console.WriteLine("5. Mostrar stock mínimo de un producto");
-            Console.WriteLine("6. Registrar salida de productos"); // NUEVA OPCIÓN
-            Console.WriteLine("7. Salir"); // Mover "Salir" a la opción 7
+            Console.WriteLine("5. Registrar entrada de productos");
+            Console.WriteLine("6. Mostrar stock mínimo de un producto");
+            Console.WriteLine("7. Registrar salida de productos"); // NUEVA OPCIÓN
+            Console.WriteLine("8. Salir"); // Mover "Salir" a la opción 7
 
             Console.Write("Seleccione una opción: ");
 
@@ -31,9 +32,10 @@ class Program
                 case 2: MostrarInventario(); break;
                 case 3: ActualizarProducto(); break;
                 case 4: EliminarProducto(); break;
-                case 5: VerAlertas(); break;
-                case 6: RegistrarSalida(); break;
-                case 7: Console.WriteLine("Saliendo..."); break;
+                case 5: RegistrarCompra(); break;
+                case 6: VerAlertas(); break;
+                case 7: RegistrarSalida(); break;
+                case 8: Console.WriteLine("Saliendo..."); break;
                 default: Console.WriteLine("Opción inválida."); break;
             }
 
@@ -125,6 +127,40 @@ class Program
             Console.WriteLine("❌ Producto no encontrado.");
         }
     }
+
+    static void RegistrarCompra()
+{
+    Console.Write("ID del producto: ");
+    if (int.TryParse(Console.ReadLine(), out int id))
+    {
+        Producto producto = inventario.Find(p => p.ID == id);
+        if (producto != null)
+        {
+            Console.Write("Cantidad a ingresar: ");
+            if (int.TryParse(Console.ReadLine(), out int cantidad) && cantidad > 0)
+            {
+                Compra compra = new Compra(producto.ID, producto.Nombre, producto.Descripcion,
+                                           producto.StockActual, producto.StockMinimo,
+                                           producto.Precio, cantidad, DateTime.Now);
+                compra.RegistrarCompras();
+                Console.WriteLine("✅ Entrada registrada correctamente.");
+            }
+            else
+            {
+                Console.WriteLine("❌ Cantidad inválida.");
+            }
+        }
+        else
+        {
+            Console.WriteLine("❌ Producto no encontrado.");
+        }
+    }
+    else
+    {
+        Console.WriteLine("❌ ID inválido.");
+    }
+}
+
 
     // Mostrar stop minimo de un producto 
     static void VerAlertas()
