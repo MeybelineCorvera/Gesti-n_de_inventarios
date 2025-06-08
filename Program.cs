@@ -139,10 +139,7 @@ class Program
             Console.Write("Cantidad a ingresar: ");
             if (int.TryParse(Console.ReadLine(), out int cantidad) && cantidad > 0)
             {
-                Compra compra = new Compra(producto.ID, producto.Nombre, producto.Descripcion,
-                                           producto.StockActual, producto.StockMinimo,
-                                           producto.Precio, cantidad, DateTime.Now);
-                compra.RegistrarCompras();
+                producto.StockActual += cantidad; // ✅ Modificación directa del stock
                 Console.WriteLine("✅ Entrada registrada correctamente.");
             }
             else
@@ -160,6 +157,7 @@ class Program
         Console.WriteLine("❌ ID inválido.");
     }
 }
+
 
 
     // Mostrar stop minimo de un producto 
