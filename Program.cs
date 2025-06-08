@@ -39,7 +39,7 @@ class Program
                 default: Console.WriteLine("Opción inválida."); break;
             }
 
-        } while (opcion != 7);
+        } while (opcion != 8);
     }
     //Metodo para agregar productos
     static void AgregarProducto()
